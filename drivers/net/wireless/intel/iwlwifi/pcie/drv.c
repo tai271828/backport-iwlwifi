@@ -91,161 +91,14 @@ static const struct pci_device_id iwl_hw_card_ids[] = {
 
 #if IS_ENABLED(CPTCFG_IWLMVM)
 /* 7260 Series */
-	{IWL_PCI_DEVICE(0x08B1, 0x4070, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4072, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4170, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4C60, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4C70, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4060, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x406A, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4160, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4062, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4162, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x4270, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x4272, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x4260, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x426A, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x4262, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4470, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4472, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4460, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x446A, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4462, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4870, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x486E, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4A70, iwl7260_2ac_cfg_high_temp)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4A6E, iwl7260_2ac_cfg_high_temp)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4A6C, iwl7260_2ac_cfg_high_temp)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4570, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4560, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x4370, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x4360, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x5070, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x5072, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x5170, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x5770, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4020, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x402A, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0x4220, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0x4420, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC070, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC072, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC170, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC060, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC06A, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC160, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC062, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC162, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC770, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC760, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0xC270, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xCC70, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xCC60, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0xC272, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0xC260, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0xC26A, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0xC262, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC470, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC472, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC460, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC462, iwl7260_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC570, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC560, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0xC370, iwl7260_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC360, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC020, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC02A, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B2, 0xC220, iwl7260_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B1, 0xC420, iwl7260_2n_cfg)},
 
 /* 3160 Series */
-	{IWL_PCI_DEVICE(0x08B3, 0x0070, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x0072, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x0170, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x0172, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x0060, iwl3160_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x0062, iwl3160_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B4, 0x0270, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B4, 0x0272, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x0470, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x0472, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B4, 0x0370, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8070, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8072, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8170, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8172, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8060, iwl3160_2n_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8062, iwl3160_n_cfg)},
-	{IWL_PCI_DEVICE(0x08B4, 0x8270, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B4, 0x8370, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B4, 0x8272, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8470, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x8570, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x1070, iwl3160_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x08B3, 0x1170, iwl3160_2ac_cfg)},
 
 /* 3165 Series */
-	{IWL_PCI_DEVICE(0x3165, 0x4010, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3165, 0x4012, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3166, 0x4212, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3165, 0x4410, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3165, 0x4510, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3165, 0x4110, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3166, 0x4310, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3166, 0x4210, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3165, 0x8010, iwl3165_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x3165, 0x8110, iwl3165_2ac_cfg)},
 
 /* 3168 Series */
-	{IWL_PCI_DEVICE(0x24FB, 0x2010, iwl3168_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x24FB, 0x2110, iwl3168_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x24FB, 0x2050, iwl3168_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x24FB, 0x2150, iwl3168_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x24FB, 0x0000, iwl3168_2ac_cfg)},
 
 /* 7265 Series */
-	{IWL_PCI_DEVICE(0x095A, 0x5010, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5110, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5100, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x5310, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x5302, iwl7265_n_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x5210, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5C10, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5012, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5412, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5410, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5510, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5400, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x1010, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5000, iwl7265_2n_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x500A, iwl7265_2n_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x5200, iwl7265_2n_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5002, iwl7265_n_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5102, iwl7265_n_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x5202, iwl7265_n_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9010, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9012, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x900A, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9110, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9112, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x9210, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x9200, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9510, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x9310, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9410, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5020, iwl7265_2n_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x502A, iwl7265_2n_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5420, iwl7265_2n_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5090, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5190, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5590, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x5290, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5490, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x5F10, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x5212, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095B, 0x520A, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9000, iwl7265_2ac_cfg)},
-	{IWL_PCI_DEVICE(0x095A, 0x9400, iwl7265_2ac_cfg)},
 
 /* 8000 Series */
 	{IWL_PCI_DEVICE(0x24F3, 0x0010, iwl8260_2ac_cfg)},
@@ -421,7 +274,6 @@ static void set_dflt_pwr_limit(struct iwl_trans *trans, struct pci_dev *pdev) {}
 static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 {
 	const struct iwl_cfg *cfg = (struct iwl_cfg *)(ent->driver_data);
-	const struct iwl_cfg *cfg_7265d __maybe_unused = NULL;
 	const struct iwl_cfg *cfg_9260lc __maybe_unused = NULL;
 	struct iwl_trans *iwl_trans;
 	struct iwl_trans_pcie *trans_pcie;
@@ -436,25 +288,6 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		return PTR_ERR(iwl_trans);
 
 #if IS_ENABLED(CPTCFG_IWLMVM)
-	/*
-	 * special-case 7265D, it has the same PCI IDs.
-	 *
-	 * Note that because we already pass the cfg to the transport above,
-	 * all the parameters that the transport uses must, until that is
-	 * changed, be identical to the ones in the 7265D configuration.
-	 */
-	if (cfg == &iwl7265_2ac_cfg)
-		cfg_7265d = &iwl7265d_2ac_cfg;
-	else if (cfg == &iwl7265_2n_cfg)
-		cfg_7265d = &iwl7265d_2n_cfg;
-	else if (cfg == &iwl7265_n_cfg)
-		cfg_7265d = &iwl7265d_n_cfg;
-	if (cfg_7265d &&
-	    (iwl_trans->hw_rev & CSR_HW_REV_TYPE_MSK) == CSR_HW_REV_TYPE_7265D) {
-		cfg = cfg_7265d;
-		iwl_trans->cfg = cfg_7265d;
-	}
-
 	if (iwl_trans->cfg->rf_id) {
 		if (cfg == &iwl9260_2ac_cfg)
 			cfg_9260lc = &iwl9260lc_2ac_cfg;
