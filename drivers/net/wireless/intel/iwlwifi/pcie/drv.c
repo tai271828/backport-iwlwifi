@@ -249,6 +249,9 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 	iwl_trans->wakelock_count = 1;
 #endif
 
+	static char *tai_message = "world";
+	printk(KERN_INFO "TAI INFO: %s from iwl_pci_probe!\n", tai_message);
+
 	return 0;
 
 out_free_drv:
@@ -275,6 +278,9 @@ static void iwl_pci_remove(struct pci_dev *pdev)
 	iwl_drv_stop(trans_pcie->drv);
 
 	iwl_trans_pcie_free(trans);
+
+	static char *tai_message = "world";
+	printk(KERN_INFO "TAI INFO: %s from iwl_pci_remove!\n", tai_message);
 }
 
 #ifdef CONFIG_PM_SLEEP
@@ -508,10 +514,15 @@ int __must_check iwl_pci_register_driver(void)
 	if (ret)
 		pr_err("Unable to initialize PCI module\n");
 
+	static char *tai_message = "world";
+	printk(KERN_INFO "TAI INFO: %s from iwl_pci_register_driver!\n", tai_message);
+
 	return ret;
 }
 
 void iwl_pci_unregister_driver(void)
 {
+	static char *tai_message = "world";
+	printk(KERN_INFO "TAI INFO: %s from iwl_pci_unregister_driver!\n", tai_message);
 	pci_unregister_driver(&iwl_pci_driver);
 }
