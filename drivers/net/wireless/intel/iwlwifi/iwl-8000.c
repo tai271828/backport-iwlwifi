@@ -197,23 +197,5 @@ const struct iwl_cfg iwl8265_2ac_cfg = {
 	.vht_mu_mimo_supported = true,
 };
 
-const struct iwl_cfg iwl8265_2ac_sdio_cfg = {
-	.name = "Intel(R) Dual Band Wireless-AC 8265",
-	.fw_name_pre = IWL8265_FW_PRE,
-	IWL_DEVICE_8265,
-	.ht_params = &iwl8000_ht_params,
-	.nvm_ver = IWL8000_NVM_VERSION,
-	.nvm_calib_ver = IWL8000_TX_POWER_VERSION,
-	.max_rx_agg_size = MAX_RX_AGG_SIZE_8260_SDIO,
-	.max_tx_agg_size = MAX_TX_AGG_SIZE_8260_SDIO,
-	.disable_dummy_notification = true,
-#ifdef CPTCFG_IWLWIFI_SUPPORT_FPGA_BU
-	/* No need to load INIT image on FPGA */
-	.no_power_up_nic_in_init = true,
-#endif
-	.max_ht_ampdu_exponent  = MAX_HT_AMPDU_EXPONENT_8260_SDIO,
-	.max_vht_ampdu_exponent = MAX_VHT_AMPDU_EXPONENT_8260_SDIO,
-};
-
 MODULE_FIRMWARE(IWL8000_MODULE_FIRMWARE(IWL8000_UCODE_API_MAX));
 MODULE_FIRMWARE(IWL8265_MODULE_FIRMWARE(IWL8265_UCODE_API_MAX));

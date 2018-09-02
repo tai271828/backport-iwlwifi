@@ -95,7 +95,6 @@
  * Device IDs table for the SDIO bus enumeration
  */
 static const struct sdio_device_id iwl_sdio_device_ids[] = {
-	{IWL_SDIO_DEVICE(0x8275, iwl8265_2ac_sdio_cfg)},
 	/* zero ending */
 	{},
 };
