@@ -611,8 +611,6 @@ void iwl_mvm_fw_error_dump(struct iwl_mvm *mvm)
 			}
 		}
 
-		if (mvm->cfg->device_family == IWL_DEVICE_FAMILY_7000)
-			radio_len = sizeof(*dump_data) + RADIO_REG_MAX_READ;
 	}
 
 	file_len = sizeof(*dump_file) +
@@ -681,9 +679,7 @@ void iwl_mvm_fw_error_dump(struct iwl_mvm *mvm)
 	dump_data->len = cpu_to_le32(sizeof(*dump_info));
 	dump_info = (void *)dump_data->data;
 	dump_info->device_family =
-		mvm->cfg->device_family == IWL_DEVICE_FAMILY_7000 ?
-			cpu_to_le32(IWL_FW_ERROR_DUMP_FAMILY_7) :
-			cpu_to_le32(IWL_FW_ERROR_DUMP_FAMILY_8);
+		mvm->cfg->device_family == cpu_to_le32(IWL_FW_ERROR_DUMP_FAMILY_8);
 	dump_info->hw_step = cpu_to_le32(CSR_HW_REV_STEP(mvm->trans->hw_rev));
 	memcpy(dump_info->fw_human_readable, mvm->fw->human_readable,
 	       sizeof(dump_info->fw_human_readable));
@@ -914,10 +910,7 @@ int iwl_mvm_fw_dbg_collect_trig(struct iwl_mvm *mvm,
 
 static inline void iwl_mvm_restart_early_start(struct iwl_mvm *mvm)
 {
-	if (mvm->cfg->device_family == IWL_DEVICE_FAMILY_7000)
-		iwl_clear_bits_prph(mvm->trans, MON_BUFF_SAMPLE_CTL, 0x100);
-	else
-		iwl_write_prph(mvm->trans, DBGC_IN_SAMPLE, 1);
+	iwl_write_prph(mvm->trans, DBGC_IN_SAMPLE, 1);
 }
 
 int iwl_mvm_start_fw_dbg_conf(struct iwl_mvm *mvm, u8 conf_id)

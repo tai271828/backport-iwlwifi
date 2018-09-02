@@ -482,10 +482,7 @@ static void iwl_pcie_apm_stop(struct iwl_trans *trans, bool op_mode_leave)
 			iwl_pcie_apm_init(trans);
 
 		/* inform ME that we are leaving */
-		if (trans->cfg->device_family == IWL_DEVICE_FAMILY_7000)
-			iwl_set_bits_prph(trans, APMG_PCIDEV_STT_REG,
-					  APMG_PCIDEV_STT_VAL_WAKE_ME);
-		else if (trans->cfg->device_family == IWL_DEVICE_FAMILY_8000) {
+		if (trans->cfg->device_family == IWL_DEVICE_FAMILY_8000) {
 			iwl_set_bit(trans, CSR_DBG_LINK_PWR_MGMT_REG,
 				    CSR_RESET_LINK_PWR_MGMT_DISABLED);
 			iwl_set_bit(trans, CSR_HW_IF_CONFIG_REG,
@@ -1006,19 +1003,7 @@ static int iwl_pcie_load_given_ucode(struct iwl_trans *trans,
 			return ret;
 	}
 
-	/* supported for 7000 only for the moment */
-	if (iwlwifi_mod_params.fw_monitor &&
-	    trans->cfg->device_family == IWL_DEVICE_FAMILY_7000) {
-		iwl_pcie_alloc_fw_monitor(trans, 0);
-
-		if (trans_pcie->fw_mon_size) {
-			iwl_write_prph(trans, MON_BUFF_BASE_ADDR,
-				       trans_pcie->fw_mon_phys >> 4);
-			iwl_write_prph(trans, MON_BUFF_END_ADDR,
-				       (trans_pcie->fw_mon_phys +
-					trans_pcie->fw_mon_size) >> 4);
-		}
-	} else if (trans->dbg_dest_tlv) {
+	if (trans->dbg_dest_tlv) {
 		iwl_pcie_apply_destination(trans);
 	}
 
@@ -2697,9 +2682,7 @@ iwl_trans_pcie_dump_monitor(struct iwl_trans *trans,
 	struct iwl_trans_pcie *trans_pcie = IWL_TRANS_GET_PCIE_TRANS(trans);
 	u32 len = 0;
 
-	if ((trans_pcie->fw_mon_page &&
-	     trans->cfg->device_family == IWL_DEVICE_FAMILY_7000) ||
-	    trans->dbg_dest_tlv) {
+	if (trans->dbg_dest_tlv) {
 		struct iwl_fw_error_dump_fw_mon *fw_mon_data;
 		u32 base, write_ptr, wrap_cnt;
 
