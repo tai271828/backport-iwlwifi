@@ -183,7 +183,7 @@ static const struct iwl_tt_params iwl8000_tt_params = {
 	.ucode_api_min = IWL8265_UCODE_API_MIN				\
 
 const struct iwl_cfg iwl8265_2ac_cfg = {
-	.name = "Intel(R) Dual Band Wireless AC 8265",
+	.name = "Intel(R) Dual Band Wireless AC 8265 (Backport)",
 	.fw_name_pre = IWL8265_FW_PRE,
 	IWL_DEVICE_8265,
 	.ht_params = &iwl8000_ht_params,
