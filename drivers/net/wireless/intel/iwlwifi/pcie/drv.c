@@ -72,11 +72,6 @@
 #include <linux/pci-aspm.h>
 #include <linux/acpi.h>
 
-#ifdef CPTCFG_IWLWIFI_PLATFORM_DATA
-#include <linux/device.h>
-#include <linux/platform_device.h>
-#include <linux/platform_data/iwlwifi.h>
-#endif /* CPTCFG_IWLWIFI_PLATFORM_DATA */
 #include "iwl-trans.h"
 #include "iwl-drv.h"
 #include "internal.h"
