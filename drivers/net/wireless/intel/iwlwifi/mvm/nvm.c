@@ -234,19 +234,6 @@ static int iwl_nvm_write_section(struct iwl_mvm *mvm, u16 section,
 	return 0;
 }
 
-static void iwl_mvm_nvm_fixups(struct iwl_mvm *mvm, unsigned int section,
-			       u8 *data, unsigned int len)
-{
-#define IWL_4165_DEVICE_ID	0x5501
-#define NVM_SKU_CAP_MIMO_DISABLE BIT(5)
-
-	if (section == NVM_SECTION_TYPE_PHY_SKU &&
-	    mvm->trans->hw_id == IWL_4165_DEVICE_ID && data && len >= 5 &&
-	    (data[4] & NVM_SKU_CAP_MIMO_DISABLE))
-		/* OTP 0x52 bug work around: it's a 1x1 device */
-		data[3] = ANT_B | (ANT_B << 4);
-}
-
 /*
  * Reads an NVM section completely.
  * NICs prior to 7000 family doesn't have a real NVM, but just read
@@ -286,8 +273,6 @@ static int iwl_nvm_read_section(struct iwl_mvm *mvm, u16 section,
 		}
 		offset += ret;
 	}
-
-	iwl_mvm_nvm_fixups(mvm, section, data, offset);
 
 	IWL_DEBUG_EEPROM(mvm->trans->dev,
 			 "NVM section %d read completed\n", section);
@@ -518,8 +503,6 @@ static int iwl_mvm_read_external_nvm(struct iwl_mvm *mvm)
 			break;
 		}
 
-		iwl_mvm_nvm_fixups(mvm, section_id, temp, section_size);
-
 		kfree(mvm->nvm_sections[section_id].data);
 		mvm->nvm_sections[section_id].data = temp;
 		mvm->nvm_sections[section_id].length = section_size;
@@ -585,8 +568,6 @@ int iwl_nvm_init(struct iwl_mvm *mvm, bool read_nvm_from_nic)
 				ret = -ENOMEM;
 				break;
 			}
-
-			iwl_mvm_nvm_fixups(mvm, section, temp, ret);
 
 			mvm->nvm_sections[section].data = temp;
 			mvm->nvm_sections[section].length = ret;
