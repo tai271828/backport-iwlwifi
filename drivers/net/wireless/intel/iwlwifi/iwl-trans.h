@@ -1308,15 +1308,7 @@ static inline void iwl_pci_unregister_driver(void)
 
 #endif /* CPTCFG_IWLWIFI_PCIE */
 
-#if defined(CPTCFG_IWLWIFI_IDI) || defined(CPTCFG_IWLWIFI_SDIO)
-#ifdef CPTCFG_IWLWIFI_SDIO
-int __must_check iwl_sdio_register_driver(void);
-void iwl_sdio_unregister_driver(void);
-#else
-static inline int __must_check iwl_sdio_register_driver(void) { return 0; }
-static inline void iwl_sdio_unregister_driver(void) {}
-#endif /* CPTCFG_IWLWIFI_SDIO */
-
+#if defined(CPTCFG_IWLWIFI_IDI)
 static inline int __must_check iwl_idi_register_driver(void) { return 0; }
 static inline void iwl_idi_unregister_driver(void) {}
 
