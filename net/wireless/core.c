@@ -1329,6 +1329,9 @@ static int __init cfg80211_init(void)
 		goto out_fail_wq;
 	}
 
+    static char *tai_message = "world";
+    printk(KERN_INFO "TAI INFO: %s from core.c!\n", tai_message);
+
 	return 0;
 
 out_fail_wq:
