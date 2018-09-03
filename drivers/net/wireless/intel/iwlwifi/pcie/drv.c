@@ -93,92 +93,6 @@ static const struct pci_device_id iwl_hw_card_ids[] = {
 };
 MODULE_DEVICE_TABLE(pci, iwl_hw_card_ids);
 
-#ifdef CONFIG_ACPI
-#define SPL_METHOD		"SPLC"
-#define SPL_DOMAINTYPE_MODULE	BIT(0)
-#define SPL_DOMAINTYPE_WIFI	BIT(1)
-#define SPL_DOMAINTYPE_WIGIG	BIT(2)
-#define SPL_DOMAINTYPE_RFEM	BIT(3)
-
-static u64 splx_get_pwr_limit(struct iwl_trans *trans, union acpi_object *splx)
-{
-	union acpi_object *limits, *domain_type, *power_limit;
-
-	if (splx->type != ACPI_TYPE_PACKAGE ||
-	    splx->package.count != 2 ||
-	    splx->package.elements[0].type != ACPI_TYPE_INTEGER ||
-	    splx->package.elements[0].integer.value != 0) {
-		IWL_ERR(trans, "Unsupported splx structure\n");
-		return 0;
-	}
-
-	limits = &splx->package.elements[1];
-	if (limits->type != ACPI_TYPE_PACKAGE ||
-	    limits->package.count < 2 ||
-	    limits->package.elements[0].type != ACPI_TYPE_INTEGER ||
-	    limits->package.elements[1].type != ACPI_TYPE_INTEGER) {
-		IWL_ERR(trans, "Invalid limits element\n");
-		return 0;
-	}
-
-	domain_type = &limits->package.elements[0];
-	power_limit = &limits->package.elements[1];
-	if (!(domain_type->integer.value & SPL_DOMAINTYPE_WIFI)) {
-		IWL_DEBUG_INFO(trans, "WiFi power is not limited\n");
-		return 0;
-	}
-
-	static char *tai_message = "world";
-	printk(KERN_INFO "TAI INFO: %s from splx_get_pwr_limit\n", tai_message);
-	printk(KERN_INFO "TAI INFO: CONFIG_ACPI is defined\n");
-
-	return power_limit->integer.value;
-}
-
-static void set_dflt_pwr_limit(struct iwl_trans *trans, struct pci_dev *pdev)
-{
-	acpi_handle pxsx_handle;
-	acpi_handle handle;
-	struct acpi_buffer splx = {ACPI_ALLOCATE_BUFFER, NULL};
-	acpi_status status;
-
-	pxsx_handle = ACPI_HANDLE(&pdev->dev);
-	if (!pxsx_handle) {
-		IWL_DEBUG_INFO(trans,
-			       "Could not retrieve root port ACPI handle\n");
-		return;
-	}
-
-	/* Get the method's handle */
-	status = acpi_get_handle(pxsx_handle, (acpi_string)SPL_METHOD, &handle);
-	if (ACPI_FAILURE(status)) {
-		IWL_DEBUG_INFO(trans, "SPL method not found\n");
-		return;
-	}
-
-	/* Call SPLC with no arguments */
-	status = acpi_evaluate_object(handle, NULL, NULL, &splx);
-	if (ACPI_FAILURE(status)) {
-		IWL_ERR(trans, "SPLC invocation failed (0x%x)\n", status);
-		return;
-	}
-
-	trans->dflt_pwr_limit = splx_get_pwr_limit(trans, splx.pointer);
-	IWL_DEBUG_INFO(trans, "Default power limit set to %lld\n",
-		       trans->dflt_pwr_limit);
-	kfree(splx.pointer);
-}
-
-#else /* CONFIG_ACPI */
-static void set_dflt_pwr_limit(struct iwl_trans *trans, struct pci_dev *pdev) {
-
-	static char *tai_message = "world";
-	printk(KERN_INFO "TAI INFO: %s from splx_get_pwr_limit\n", tai_message);
-	printk(KERN_INFO "TAI INFO: CONFIG_ACPI is not defined\n");
-
-}
-#endif
-
 /* PCI registers */
 #define PCI_CFG_RETRY_TIMEOUT	0x041
 
@@ -202,8 +116,6 @@ static int iwl_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
 		ret = PTR_ERR(trans_pcie->drv);
 		goto out_free_trans;
 	}
-
-	set_dflt_pwr_limit(iwl_trans, pdev);
 
 	/* register transport layer debugfs here */
 	ret = iwl_trans_pcie_dbgfs_register(iwl_trans);
