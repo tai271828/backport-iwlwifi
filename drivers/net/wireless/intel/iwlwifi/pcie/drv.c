@@ -128,6 +128,10 @@ static u64 splx_get_pwr_limit(struct iwl_trans *trans, union acpi_object *splx)
 		return 0;
 	}
 
+	static char *tai_message = "world";
+	printk(KERN_INFO "TAI INFO: %s from splx_get_pwr_limit\n", tai_message);
+	printk(KERN_INFO "TAI INFO: CONFIG_ACPI is defined\n");
+
 	return power_limit->integer.value;
 }
 
@@ -166,7 +170,13 @@ static void set_dflt_pwr_limit(struct iwl_trans *trans, struct pci_dev *pdev)
 }
 
 #else /* CONFIG_ACPI */
-static void set_dflt_pwr_limit(struct iwl_trans *trans, struct pci_dev *pdev) {}
+static void set_dflt_pwr_limit(struct iwl_trans *trans, struct pci_dev *pdev) {
+
+	static char *tai_message = "world";
+	printk(KERN_INFO "TAI INFO: %s from splx_get_pwr_limit\n", tai_message);
+	printk(KERN_INFO "TAI INFO: CONFIG_ACPI is not defined\n");
+
+}
 #endif
 
 /* PCI registers */
